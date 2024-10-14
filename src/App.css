@@ -1,12 +1,15 @@
+/* Estilos generales para la página */
 .construction-page {
   display: flex;
-  flex-direction: row;
+  flex-direction: column; /* Cambiado de row a column */
   justify-content: space-between;
   padding: 50px;
   font-family: 'Arial', sans-serif;
   min-height: 100vh;
+  position: relative; /* Añadir posición relativa */
 }
 
+/* Estilos para la sección izquierda */
 .left-section {
   max-width: 50%;
   display: flex;
@@ -24,6 +27,7 @@
   margin-bottom: 20px;
 }
 
+/* Estilos para la entrada de correo electrónico */
 .email-input {
   display: flex;
   margin-bottom: 20px;
@@ -49,6 +53,7 @@
   background-color: #555;
 }
 
+/* Estilos para los íconos sociales */
 .social-icons {
   display: flex;
   gap: 10px;
@@ -60,11 +65,13 @@
   cursor: pointer;
 }
 
+/* Estilos para la información de contacto */
 .contact-info {
   margin-top: 20px;
   font-size: 0.9rem;
 }
 
+/* Estilos para la sección derecha */
 .right-section {
   display: flex;
   align-items: center;
@@ -76,12 +83,51 @@
   border-radius: 10px;
 }
 
+/* Estilos para el footer */
 footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
   text-align: center;
   padding: 20px;
   background-color: #333;
   color: white;
+  margin-top: auto; /* Añadido para empujar el footer al final */
+}
+
+/* Estilos para la sección de códigos QR */
+.qr-codes-section {
+  text-align: center;
+  margin: 40px 20px;
+}
+
+.qr-codes-section h2 {
+  margin-bottom: 20px;
+}
+
+.qr-codes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.qr-code-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 180px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.qr-code-card-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-code-card-content p {
+  margin-top: 10px;
+  font-size: 14px;
+  word-break: break-all;
+  color: #333;
 }
