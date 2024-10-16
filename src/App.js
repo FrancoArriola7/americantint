@@ -1,51 +1,72 @@
-import React from 'react';
-import './App.css'; // Asegúrate de personalizar los estilos en tu archivo CSS
-import placeholderImage from './assets/construction-set-icons_24877-60028.avif'; // Reemplaza con la ruta correcta de la imagen
-import QRCode from 'react-qr-code'; // Importa el componente QRCode
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import {FaFacebookF, FaInstagram, FaYoutube} from 'react-icons/fa';
 
-function App() {
-  const links = [
-    'https://americantint.net/ficha-tecnica/100',
-    'https://americantint.net/ficha-tecnica/200',
-    'https://americantint.net/ficha-tecnica/300',
-    'https://americantint.net/ficha-tecnica/400',
-    'https://americantint.net/ficha-tecnica/500',
-    'https://americantint.net/ficha-tecnica/wf',
+const images = [
+  require('./assets/marmoleado.png'), // Ruta de la primera imagen
+  require('./assets/colorido.png'), // Ruta de la segunda imagen
+  require('./assets/fondo3.png')
   ];
 
-  return (
-    <div className="construction-page">
-      <div className="left-section">
-        <h1>¡Nuestra nueva página web está en camino!</h1>
-        <div className="social-icons">
-          <i className="fab fa-facebook"></i>
-          <i className="fab fa-pinterest"></i>
-          <i className="fab fa-instagram"></i>
-        </div>
-        <div className="contact-info">
-          <p>Contacto — Teléfono: +54 11 4382-4670</p>
-          <p>Email: info@americantint.com.ar</p>
-        </div>
-      </div>
-      <div className="right-section">
-        <img src={placeholderImage} alt="Placeholder" />
-      </div>
-      <footer>
-        <p>© 2024 por AmericanTint. Orgullosamente creado para la empresa.</p>
-      </footer>
+// Componente Typewriter para el efecto de máquina de escribir
+function Typewriter({ text, speed }) {
+  const [displayText, setDisplayText] = useState('');
 
-      {/* Códigos QR debajo del footer */}
-      <div className="qr-codes-section">
-        <h2>Códigos QR</h2>
-        <div className="qr-codes-container">
-          {links.map((link, index) => (
-            <div key={index} className="qr-code-card">
-              <div className="qr-code-card-content">
-                <QRCode value={link} size={150} />
-                <p>{link}</p>
-              </div>
-            </div>
-          ))}
+  useEffect(() => {
+    let index = 0;
+    setDisplayText(''); // Reinicia el texto al inicio del efecto
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        setDisplayText((prev) => text.substring(0, index + 1)); // Actualiza con una porción del texto
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, [text, speed]);
+
+  return <span>{displayText}</span>;
+}
+
+
+function App() {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prevImage) => (prevImage + 1) % images.length);
+    }, 6000); // Cambia la imagen cada 5 segundos
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="background" style={{ backgroundImage: `url(${images[currentImage]})` }}>
+      <header className="header">
+        <div className="logo">American Tint</div>
+        <button className="header-button">Contact Us</button>
+      </header>
+      <div className="overlay">
+        <div className="content">
+          <h1 className="title">
+            <Typewriter text="Coming Soon" speed={100}/>
+          </h1>
+          <p className="subtitle">
+            <Typewriter text="Our website is under construction. Stay tuned for updates!" speed={50} />
+          </p>
+        </div>
+        <div className='social-icons'>
+        <a href="https://www.facebook.com/americantint.argentina/" target="_blank" rel="noopener noreferrer">
+            <FaFacebookF />
+          </a>
+          <a href="https://www.instagram.com/americantint.argentina/" target="_blank" rel="noopener noreferrer">
+            <FaInstagram />
+          </a>
+          <a href="https://www.youtube.com/@Americantint" target="_blank" rel="noopener noreferrer">
+            <FaYoutube />
+          </a>
+
         </div>
       </div>
     </div>
