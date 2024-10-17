@@ -1,87 +1,128 @@
-.construction-page {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 50px;
+/* App.css */
+body, html {
+  margin: 0;
+  padding: 0;
   font-family: 'Arial', sans-serif;
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
-.left-section {
-  max-width: 50%;
+/* Background Image */
+.background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribuye el contenido en todo el alto de la pantalla */
+  align-items: center;
+  transition: background-image 1s ease-in-out;
+}
+
+/* Overlay Effect */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  flex-grow: 1; /* Expande la capa para que ocupe el espacio disponible */
 }
 
-.left-section h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+/* Main Content */
+.content {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 50px;
 }
 
-.left-section p {
+.title {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.subtitle {
   font-size: 1.2rem;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  max-width: 600px;
 }
 
-.email-input {
-  display: flex;
-  margin-bottom: 20px;
-}
-
-.email-input input {
-  padding: 10px;
-  flex: 1;
-  border: 1px solid #ccc;
-  border-radius: 5px 0 0 5px;
-}
-
-.email-input button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #333;
-  color: white;
-  cursor: pointer;
-  border-radius: 0 5px 5px 0;
-}
-
-.email-input button:hover {
-  background-color: #555;
-}
-
+/* Social Icons */
 .social-icons {
   display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.social-icons i {
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.contact-info {
-  margin-top: 20px;
-  font-size: 0.9rem;
-}
-
-.right-section {
-  display: flex;
-  align-items: center;
   justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px; /* Espacio desde el borde inferior */
+  opacity: 0; /* Iniciamos con opacidad 0 para el efecto */
+  transform: translateY(20px); /* Desplazamos hacia abajo inicialmente */
+  animation: fadeInUp 4s forwards 1s; /* Animación de aparición */
 }
 
-.right-section img {
-  max-width: 100%;
-  border-radius: 10px;
+@keyframes fadeInUp {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
 }
 
-footer {
+.social-icons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: #fff;
+  transform: scale(1.1) rotate(360deg);
+  color: #000000;
+}
+/* Header */
+.header {
   position: absolute;
-  bottom: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  text-align: center;
-  padding: 20px;
-  background-color: #333;
-  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px; /* Ajuste de padding para dar más espacio */
+  z-index: 10;
+  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.header-button {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  max-width: 150px; /* Limita el ancho del botón */
+  white-space: nowrap;
+  display: inline-block;
+  margin-left: auto; /* Empuja el botón hacia la derecha */
+  box-sizing: border-box; /* Asegura que el padding no expanda el botón */
+}
+
+.header-button:hover {
+  background-color: #fff;
+  color: #000;
 }
