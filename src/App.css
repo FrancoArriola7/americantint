@@ -6,6 +6,86 @@ body, html {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  scroll-behavior: smooth; /* Scroll suave */
+
+}
+
+/* Secciones que ocupan toda la pantalla */
+.section {
+  height: 100vh; /* Ocupa todo el alto de la ventana */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  transition: background-color 0.3s;
+}
+
+/* Estilo del menú lateral */
+.side-menu {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse; /* Invertir el orden para que el punto/linea esté a la derecha */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+  position: relative;
+}
+
+.menu-label {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.menu-item:hover .menu-label,
+.menu-item.active .menu-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.menu-line {
+  height: 1px;
+  width: 20px;
+  background-color: #fff;
+  margin-left: 10px;
+  transition: width 0.3s;
+  opacity: 0;
+}
+
+.menu-item:hover .menu-line,
+.menu-item.active .menu-line {
+  opacity: 1;
+  width: 30px; /* Extiende la línea cuando está activa */
+}
+
+/* Indicador siempre visible */
+.menu-indicator {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  border-radius: 50%;
+  margin-left: 10px;
+  transition: all 0.3s;}
+
+/* Ajuste para la sección activa */
+.menu-item:hover .menu-indicator,
+.menu-item.active .menu-indicator {
+  width: 20px; 
+  border-radius: 0; /* Elimina el borde redondeado para que se vea como una línea */
+  height: 2px; /* Reduce la altura para que sea más delgado */
 }
 
 /* Background Image */
@@ -88,7 +168,9 @@ body, html {
   transform: scale(1.1) rotate(360deg);
   color: #000000;
 }
+
 /* Header */
+
 .header {
   position: absolute;
   top: 0;
@@ -115,14 +197,141 @@ body, html {
   cursor: pointer;
   font-size: 1rem;
   transition: all 0.3s ease;
-  max-width: 150px; /* Limita el ancho del botón */
+  max-width: 150px;
   white-space: nowrap;
   display: inline-block;
-  margin-left: auto; /* Empuja el botón hacia la derecha */
-  box-sizing: border-box; /* Asegura que el padding no expanda el botón */
+  margin-left: auto;
+  box-sizing: border-box;
 }
 
 .header-button:hover {
   background-color: #fff;
   color: #000;
+}
+
+/*Cambiar idioma*/
+.language-switcher {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 5px;
+  color: #fff;
+}
+
+.flag-icon {
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.flag-container {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-flag {
+  width: 24px;
+  height: 16px;
+  margin-right: 8px; 
+}
+
+.language-name {
+  font-size: 14px;
+  color: white;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+.dropdown-icon {
+  margin-left: 5px;
+  font-size: 12px; /* Tamaño del ícono */
+  color: #ffffff; /* Color de la flecha, puedes cambiarlo */
+}
+
+/* Ajustes generales para pantallas pequeñas */
+@media (max-width: 768px) {
+  .side-menu {
+    display: none;
+  }
+
+
+  .social-icons a {
+    width: 40px; 
+    height: 40px;
+    font-size: 1.2rem; 
+  }
+
+  .subtitle {
+    margin-top: 20px; 
+    font-size: 1rem;
+    padding: 0 10px; /* Añadir un padding para que no quede pegado a los bordes */
+  }
+
+  .content {
+    padding: 0 20px; 
+  }
+}
+
+/* About Us */
+.about-us-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.about-text {
+  flex: 1;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.about-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+  }
+  .about-image {
+    margin-top: 20px;
+  }
 }
