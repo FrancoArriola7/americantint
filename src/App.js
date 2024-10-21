@@ -36,7 +36,7 @@ const texts = {
 const flagCodes = {
   en: 'GB', // Reino Unido como representante del inglés
   es: 'ES', // España
-  pt: 'BR'  // Brasil
+  pt: 'PT'  // Brasil
 };
 
 // Componente Typewriter para el efecto de máquina de escribir
@@ -67,12 +67,6 @@ function App() {
   const sections = ['Home', 'About Us'];
   const [language, setLanguage] = useState('en');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Controla el menú desplegable
-
-  const flagCodes = {
-    en: 'GB',
-    es: 'ES',
-    pt: 'PT'
-  };
 
   useEffect(() => {
     const interval = setInterval(() => {
