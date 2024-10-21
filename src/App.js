@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import {FaFacebookF, FaInstagram, FaYoutube, FaChevronDown, FaChevronUp} from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import Flag from 'react-world-flags';
 
 const images = [
-  require('./assets/marmoleado.png'), // Ruta de la primera imagen
-  require('./assets/colorido.png'), // Ruta de la segunda imagen
+  require('./assets/marmoleado.png'),
+  require('./assets/colorido.png'),
   require('./assets/fondo3.png')
-  ];
+];
 
 const texts = {
   en: {
@@ -36,7 +36,7 @@ const texts = {
 const flagCodes = {
   en: 'GB', // Reino Unido como representante del inglés
   es: 'ES', // España
-  pt: 'BR'  // Brasil
+  pt: 'PT'  // Brasil
 };
 
 // Componente Typewriter para el efecto de máquina de escribir
@@ -61,17 +61,15 @@ function Typewriter({ text, speed }) {
   return <span>{displayText}</span>;
 }
 
-
 function App() {
   const [currentImage, setCurrentImage] = useState(0);
-  const [currentSection, setCurrentSection] = useState(0);
   const [language, setLanguage] = useState('en');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Controla el menú desplegable
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-    }, 6000); // Cambia la imagen cada 5 segundos
+    }, 6000); // Cambia la imagen cada 6 segundos
     return () => clearInterval(interval);
   }, []);
 
@@ -80,10 +78,11 @@ function App() {
     setLanguage(lang);
     setIsDropdownOpen(false); // Cierra el menú desplegable al seleccionar un idioma
   };
-
   return (
-    <div className="background" style={{ backgroundImage: `url(${images[currentImage]})` }}>
-      <header className="header">
+    <div>
+      {/* Sección de inicio */}
+      <div className="section background" style={{ backgroundImage: `url(${images[currentImage]})` }}>
+        <header className="header">
           <div className="logo">American Tint</div>
           <div className="language-switcher" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
             <Flag code={flagCodes[language]} alt="flag" className="flag-icon" />
@@ -103,29 +102,29 @@ function App() {
             )}
           </div>
         </header>
-      <div className="overlay">
-        <div className="content">
-          <h1 className="title">
-            <Typewriter text="Coming Soon" speed={100}/>
-          </h1>
-          <p className="subtitle">
-            <Typewriter text="Our website is under construction. Stay tuned for updates!" speed={50} />
-          </p>
-        </div>
-        <div className='social-icons'>
-        <a href="https://www.facebook.com/americantint.argentina/" target="_blank" rel="noopener noreferrer">
-            <FaFacebookF />
-          </a>
-          <a href="https://www.instagram.com/americantint.argentina/" target="_blank" rel="noopener noreferrer">
-            <FaInstagram />
-          </a>
-          <a href="https://www.youtube.com/@Americantint" target="_blank" rel="noopener noreferrer">
-            <FaYoutube />
-          </a>
-          <a href="https://api.whatsapp.com/send?phone=5491122496051&text=Buenas%F0%9F%91%8B%0AEstaba%20viendo%20su%20p%C3%A1gina%20web%2C%20y%20quer%C3%ADa%20consultar%20por..." target="_blank" rel="noopener noreferrer">
-            <FaWhatsapp />
-          </a>
-
+        <div className="overlay">
+          <div className="content">
+            <h1 className="title">
+              <Typewriter text={texts[language].comingSoon} speed={100} />
+            </h1>
+            <p className="subtitle">
+              <Typewriter text={texts[language].subtitle} speed={50} />
+            </p>
+          </div>
+          <div className='social-icons'>
+            <a href="https://www.facebook.com/americantint.argentina/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <FaFacebookF />
+            </a>
+            <a href="https://www.instagram.com/americantint.argentina/" target="_blank" rel="noopener noreferrer">
+              <FaInstagram />
+            </a>
+            <a href="https://www.youtube.com/@Americantint" target="_blank" rel="noopener noreferrer">
+              <FaYoutube />
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=5491122496051&text=Buenas%F0%9F%91%8B%0AEstaba%20viendo%20su%20p%C3%A1gina%20web%2C%20y%20quer%C3%ADa%20consultar%20por..." target="_blank" rel="noopener noreferrer">
+              <FaWhatsapp />
+            </a>
+          </div>
         </div>
       </div>
     </div>
